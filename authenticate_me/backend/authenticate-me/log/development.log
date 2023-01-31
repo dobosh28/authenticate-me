@@ -296,3 +296,75 @@ Processing by ApplicationController#test as */*
 Completed 200 OK in 26ms (Views: 0.1ms | ActiveRecord: 6.6ms | Allocations: 9752)
 
 
+Started GET "/" for 127.0.0.1 at 2023-01-31 17:52:18 -0500
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/rexqu/.rbenv/versions/3.1.1/lib/ruby/gems/3.1.0/gems/railties-7.0.4.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/rexqu/.rbenv/versions/3.1.1/lib/ruby/gems/3.1.0/gems/railties-7.0.4.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 0.7ms | Allocations: 526)
+Completed 200 OK in 4ms (Views: 2.2ms | ActiveRecord: 0.0ms | Allocations: 2800)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-01-31 17:52:50 -0500
+
+NameError - undefined local variable or method `current_user' for ApplicationController:Class
+  current_user
+  ^^^^^^^^^^^^:
+  app/controllers/application_controller.rb:25:in `<class:ApplicationController>'
+  app/controllers/application_controller.rb:1:in `<top (required)>'
+  app/controllers/api/sessions_controller.rb:1:in `<top (required)>'
+
+Started POST "/api/session" for 127.0.0.1 at 2023-01-31 17:53:29 -0500
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"credential"=>"Demo-lition", "password"=>"[FILTERED]", "session"=>{"credential"=>"Demo-lition", "password"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms | Allocations: 2540)
+
+
+
+NoMethodError - undefined method `[]' for nil:NilClass
+    @user = User.find_by_credentials(params[:user][:username], params[:user][:password])
+                                                  ^^^^^^^^^^^:
+  app/controllers/api/sessions_controller.rb:12:in `create'
+
+Started POST "/api/session" for 127.0.0.1 at 2023-01-31 17:54:20 -0500
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"credential"=>"Demo-lition", "password"=>"[FILTERED]", "session"=>{"credential"=>"Demo-lition", "password"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms | Allocations: 2357)
+
+
+
+NoMethodError - undefined method `[]' for nil:NilClass
+    @user = User.find_by_credentials(params[:user][:credentials], params[:user][:password])
+                                                  ^^^^^^^^^^^^^^:
+  app/controllers/api/sessions_controller.rb:12:in `create'
+
+Started POST "/api/session" for 127.0.0.1 at 2023-01-31 17:56:05 -0500
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"credential"=>"Demo-lition", "password"=>"[FILTERED]", "session"=>{"credential"=>"Demo-lition", "password"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms | Allocations: 3721)
+
+
+
+NameError - undefined local variable or method `param' for #<Api::SessionsController:0x00000000005af0>
+    @user = User.find_by_credentials(param[:credentials], params[:password])
+                                     ^^^^^
+Did you mean?  params
+               params=
+               @_params:
+  app/controllers/api/sessions_controller.rb:12:in `create'
+
+Started POST "/api/session" for 127.0.0.1 at 2023-01-31 17:56:14 -0500
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"credential"=>"Demo-lition", "password"=>"[FILTERED]", "session"=>{"credential"=>"Demo-lition", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:26:in `find_by_credentials'
+Completed 401 Unauthorized in 5ms (Views: 0.1ms | ActiveRecord: 1.4ms | Allocations: 4445)
+
+
+Started POST "/api/session" for 127.0.0.1 at 2023-01-31 17:57:02 -0500
+Processing by Api::SessionsController#create as JSON
+  Parameters: {"credential"=>"Demo-lition", "password"=>"[FILTERED]", "session"=>{"credential"=>"Demo-lition", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/models/user.rb:26:in `find_by_credentials'
+Completed 401 Unauthorized in 3ms (Views: 0.1ms | ActiveRecord: 1.2ms | Allocations: 2789)
+
+
